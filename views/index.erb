@@ -1,0 +1,11 @@
+<% @videos.each do |video| %>
+
+
+<h3>Welcome to Vbucket!</h3>
+<p> <%= video %>
+<form action="/submit" method="POST">
+	<input type="text" name="model[video]" value="Enter Video Name" />
+	<input type="submit" value="Submit" />
+</form>
+
+<% end %>
