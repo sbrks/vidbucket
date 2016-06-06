@@ -1,15 +1,15 @@
-require 'rubygems'
-require 'sinatra'
-require 'sinatra/activerecord'
-require 'active_record'
-require './models/video' #video class
-require 'bundler'
+# require 'rubygems'
+# require 'sinatra'
+# require 'sinatra/activerecord'
+# require 'active_record'
+# require './models/video' #video class
+# require 'bundler'
 
-Bundler.require
+# Bundler.require
 
-class App < Sinatra::Base
+class Vbucket < Sinatra::Base
 
-	register Sinatra::ActiveRecordExtension
+	#register Sinatra::ActiveRecordExtension
 
 VIDEOS = ["https://www.youtube.com/watch?v=4ViOnukagG8", "http://youtube.com/fjdsal", "http://youtube.com/jfdaklsjdas"]
 

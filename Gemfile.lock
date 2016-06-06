@@ -58,6 +58,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord
   pg
   rake
   shotgun
