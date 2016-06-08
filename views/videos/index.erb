@@ -1,0 +1,57 @@
+<h2>Videos</h2>
+
+<a class="btn" href="/videos/new">Add Videos</a>
+
+
+
+<div class="videos">
+  <% @videos.each do |video| %>
+  <div class="row">
+    <img src="<%= video.video_url %>" alt="<%= video.title%>">
+    <ul style="list-style: none">
+      <li>
+        <h2>
+          <a href="/videos/<%= video.id %>">
+            <%= video.title %>
+          </a>
+        </h2>
+      </li>
+      <li>
+        <a href="/videos/<%= video.id %>/edit">
+          Edit
+        </a>
+      </li>
+      <li>
+        <li>
+          <form method="/videos/<%= video.id %>/delete" action="post">
+            <button>Delete</button>
+          </form>
+        </li>
+      </li>
+    </ul>
+  </div>
+  <% end %>
+</div>
+
+
+<script>
+
+var testString = "https://www.youtube.com/watch?v=XBeGD3aAyNg";
+
+testString.split("?v=", 11)
+["https://www.youtube.com/watch", "XBeGD3aAyNg"];
+
+resultArray = testString.split("?v=", 11)
+["https://www.youtube.com/watch", "XBeGD3aAyNg"];
+
+resultArray[1];
+"XBeGD3aAyNg"
+
+//push result array into videoId property of player object
+</script>
+
+
+
+
+
+
