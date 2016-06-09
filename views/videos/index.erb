@@ -3,55 +3,31 @@
 <a class="btn" href="/videos/new">Add Videos</a>
 
 
-
-<div class="videos">
+  <div class="videos">
   <% @videos.each do |video| %>
-  <div class="row">
-    <img src="<%= video.video_url %>" alt="<%= video.title%>">
-    <ul style="list-style: none">
-      <li>
-        <h2>
-          <a href="/videos/<%= video.id %>">
-            <%= video.title %>
-          </a>
-        </h2>
-      </li>
-      <li>
-        <a href="/videos/<%= video.id %>/edit">
-          Edit
-        </a>
-      </li>
-      <li>
-        <li>
-          <form method="/videos/<%= video.id %>/delete" action="post">
-            <button>Delete</button>
-          </form>
-        </li>
-      </li>
-    </ul>
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4><%= video.caption %></h4>
+        </div>
+      <div class="panel-body">
+
+        <p><%= video.video_url %></p>
+
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @youtube_id %>" frameborder="0" allowfullscreen></iframe> -->
+
+        <!--video player -->
+          <div id="player"></div>
+         <!--end video player -->
+
+          <a href="/videos/<%= video.id %>" class="btn btn-primary">Watch Video</a>
+
+      </div>
+    </div>
   </div>
-  <% end %>
 </div>
 
+<% end %>
 
-<script>
-
-var testString = "https://www.youtube.com/watch?v=XBeGD3aAyNg";
-
-testString.split("?v=", 11)
-["https://www.youtube.com/watch", "XBeGD3aAyNg"];
-
-resultArray = testString.split("?v=", 11)
-["https://www.youtube.com/watch", "XBeGD3aAyNg"];
-
-resultArray[1];
-"XBeGD3aAyNg"
-
-//push result array into videoId property of player object
-</script>
-
-
-
-
-
-
+<% end %>
+</div>

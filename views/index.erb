@@ -1,3 +1,4 @@
+<!--nav bar -->
 <div class="container-fluid">
   <nav class="navbar navbar-default">
       <ul class="nav nav-pills">
@@ -15,7 +16,7 @@
   </nav>
 </div>
 
-
+<!--header -->
 <div class="jumbotron">
   <div class="container-fluid">
     <div class="page-header">
@@ -23,31 +24,47 @@
         <medium>Upload bucket list videos</medium>
     </div>
 
+<!--upload form -->
+<form action="/" method="post" enctype="multipart/form-data">
+  <strong>Username:</strong>
+  <input type="text" name="users[username]"><br>
+  
+
+  <strong>Video URL:</strong>
+  <input type="text" name="videos[video_url]"><br>
+
+  <strong>Caption:</strong>
+  <input type="text" name="videos[caption]"><br>
+
+  <input type="submit" name="Submit">
+
+</form>
 
 
+<!-- video container -->
+<div class="videos">
   <% @videos.each do |video| %>
-      <div class="thumbnail">
-      	<p> <%= video %>
-
-        <!-- 16:9 aspect ratio -->
-        <div class="embed-responsive embed-responsive-4by3">
-          <iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=II0Y44tO9nk"></iframe>
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4><%= video.caption %></h4>
         </div>
+      <div class="panel-body">
 
+        <p><%= video.video_url %></p>
 
+        <!--video player -->
+          <div id="player"></div>
+         <!--end video player -->
 
-      	<form action="/submit" method="POST">
-      		<input type="text" name="model[video]" value="Enter Video Name" />
-      		<input type="submit" value="Submit" />
-      	</form>
+          <a href="/videos/<%= video.id %>" class="btn btn-primary">Watch Video</a>
+
       </div>
-
-<!-- 
-<iframe width="420" height="315"
-src="https://www.youtube.com/watch?v=FwREAW4SlVY"></iframe>  -->
-
-    <% end %>
-	</div>
-	</div>
+    </div>
+  </div>
 </div>
-</div>
+
+<% end %>
+
+
+
