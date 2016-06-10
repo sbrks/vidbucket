@@ -109,7 +109,7 @@ get '/list' do
 end
 
 
-get '/buckets' do
+get '/buckets/show' do
 	@buckets = Bucket.all
 end
 
