@@ -6,8 +6,9 @@ class Vbucket < Sinatra::Base
 	include VideoHelper
 
 	get '/' do
-
+		# @youtube_id = @videos.video_url.split("=").last
 		@videos = Video.order(id: :desc).all
+
 		erb :index
 	end
 
@@ -27,6 +28,11 @@ class Vbucket < Sinatra::Base
 		redirect "/"
 
 	end
+#show bucket list items
+get '/list' do
+	@buckets = Bucket.all
+	erb :list
+end
 
 #show one video -->works! shows one video
 #now it doesn't work :(

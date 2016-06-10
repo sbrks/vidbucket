@@ -34,18 +34,37 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4><%= @video.caption %></h4>
+          <h5>Posted by <%= @video.username %></h5>
        </div>
       <div class="panel-body">
 
-        <p><%= @video.video_url %></p>
 
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @youtube_id %>" frameborder="0" allowfullscreen></iframe>
+        
+        <iframe width="600" height="345" src="https://www.youtube.com/embed/<%= @youtube_id %>" frameborder="0" allowfullscreen></iframe>
+			 
 
+
+
+      </div>
+      <div class="description">
+      <a href="<%= @video.video_url %>"><%= @video.video_url %></a>
+      <p><%= @video.description %></p>
       </div>
     </div>
   <% #end %>
 </div>
 
+            <div class="vid-buttons">
+              <a href="/videos/<%= @video.id %>" class="btn btn-primary">Watch Video</a>
+              <!--edit button -->
+              <form method="put" action="/videos/<%= @video.id %>/edit">
+                <input type="submit" value="Edit" class="btn btn-primary">
+              </form>
+              <!--delete button -->
+              <form method="post" action="/videos/<%= @video.id %>/delete">
+                <input type="submit" value="Delete" class="btn btn-primary">
+              </form>
+            </div>
 
 
 

@@ -8,6 +8,7 @@ Bundler.require
 require './models/video'
 require './models/videouploader'
 require './models/user'
+require './models/bucket'
 require './helpers/videohelper'
 require './app'
 
