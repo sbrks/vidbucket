@@ -1,13 +1,27 @@
 <div class="container-fluid jumbotron">
+
+<div class="container header"
+<header>
+
+  <h1><a href="/">VideoBucket<img src="/img/bucket.png"></a> </h1>
+
+</header>
+</div>
+
+
   <div class="row">
   <!--nav bar -->
-    <div class="">
+<div class="container-fluid jumbotron">
+  <div class="row">
+  <!--nav bar -->
+    <div class="navbarmain">
       <nav class="navbar navbar-default">
-        <ul class="nav nav-pills">
-          <li role="presentation" class="active"><a href="/">Home</a></li>
-          <li role="presentation" class="active"><a href="/videos/new">Upload Video</a></li>
-          <li role="presentation" class="active"><a href="#">Messages</a></li>
-          <li role="presentation" class="active"><a href="/list">The List!</a></li>
+        <ul class="nav nav-pills" style="background: white; color: white">
+          <li role="presentation" class="active" style="padding: 5px"><a href="/" hover="red">Home</a></li>
+          <li role="presentation" class="active" style="padding: 5px"><a href="/videos/new">Upload Video</a></li>
+          <li role="presentation" class="active" style="padding: 5px"><a href="#">Messages</a></li>
+          <li role="presentation" class="active" style="padding: 5px"><a href="/list">The List!</a></li>
+          <li role="presentation" class="active" style="padding: 5px"><a href="/about">About</a></li>
           <li>  
             <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
@@ -22,21 +36,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 <!--header -->
     <div class="page-header">
-
-      <h3>Upload bucket list videos</medium>
       <div>
       <button class="btn btn-primary btn-large"> <a href="/videos/new">Upload Video</a></button>
       </div>
@@ -54,23 +55,20 @@
             </div>
 
 
-            <div class="panel-body">
-
-              
-
+            <div class="panel-body-index">
 
               <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @youtube_id %>" frameborder="0" allowfullscreen></iframe>
-
+            </div>
 <!-- 
               <img src="http://img.youtube.com/vi/<%= @youtube_id %>/default.jpg" height="315" width="560"> -->
 
-
-              <h4><%= video.caption %></h4>
+        <div class="panel-body-post">
               <a href="<%= video.video_url %>"><%= video.video_url %></a>
+              <h4><%= video.caption %></h4>
               <p><%= video.description %></p>
             </div>
 
-
+<hr>
 
             <div class="vid-buttons">
               <a href="/videos/<%= video.id %>" class="btn btn-primary">Watch Video</a>

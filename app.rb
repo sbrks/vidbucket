@@ -28,11 +28,7 @@ class Vbucket < Sinatra::Base
 		redirect "/"
 
 	end
-#show bucket list items
-get '/list' do
-	@buckets = Bucket.all
-	erb :list
-end
+
 
 #show one video -->works! shows one video
 #now it doesn't work :(
@@ -102,5 +98,46 @@ get '/videos/new' do
 	@videos = Video.all
 	erb (:"videos/new")
 end
+
+
+#LIST ROUTES
+
+#show bucket list items
+get '/list' do
+	@buckets = Bucket.all
+	erb :list
+end
+
+
+get '/buckets' do
+	@buckets = Bucket.all
+end
+
+#create new bucket item
+
+	post '/buckets' do
+
+		@buckets = Bucket.create(params[:bucket])
+
+		redirect "/"
+
+	end
+
+
+#update - like create, this does the actual updating
+post "/buckets/:id" do
+	@bucket = Bucket.find(params[:id])
+	if @bucket.update_attributes(params[:bucket])
+		redirect ("/buckets/#{@bucket.id}")
+	else
+		erb (:"buckets/edit")
+	end
+end
+
+get "/buckets/:id" do
+		@bucket = Bucket.find(params[:id])
+		erb (:"buckets/show")
+	end
+
 
 end
