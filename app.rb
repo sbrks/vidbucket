@@ -6,8 +6,8 @@ class Vbucket < Sinatra::Base
 	include VideoHelper
 
 	get '/' do
-		# @youtube_id = @videos.video_url.split("=").last
 		@videos = Video.order(id: :desc).all
+		# @youtube_id = @videos[0].video_url.split("=").last
 
 		erb :index
 	end
