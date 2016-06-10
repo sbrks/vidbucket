@@ -1,14 +1,20 @@
-<h2>New Video</h2>
+<h2>Upload a New Video!</h2>
 
-<form action="/videos" method="post">
-  <label for="video[title]">Title:</label>
-  <input name="video[title]">
 
-  <label for="video[video_url]">Video URL:</label>
-  <input name="video[video_url]">
+<div class="form-group">
+<form class = "form-horizontal" action="/videos" method="post" enctype="multipart/form-data">
 
-  <label for="video[description]">Description:</label>
-  <input name="video[description]">
+  <strong>Username:</strong>
+  <input type="text" name="videos[username]"><br>
+  
 
-  <input type="submit" value="Create">
-</form>
+  <strong>Video URL:</strong>
+  <input type="text" name="videos[video_url]"><br>
+
+  <strong>Video Title:</strong>
+  <input type="text" name="videos[caption]"><br>
+
+  <strong>Description:</strong>
+  <input type="text" name="videos[description]"><br>
+
+  <input type="submit" name="Submit">

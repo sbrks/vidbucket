@@ -1,8 +1,8 @@
 <h2>Edit Video</h2>
 
 <form action='/videos/<%= "#{@video.id}" %>' method="post">
-  <label for="video[title]">Title:</label>
-  <input name="video[title]" value='<%= "#{@video.title}" %>'>
+  <label for="video[caption]">Caption:</label>
+  <input name="video[caption]" value='<%= "#{@video.caption}" %>'>
 
   <label for="video[video_url]">Video URL:</label>
   <input name="video[video_url]" value='<%= "#{@video.video_url}" %>'>
@@ -10,5 +10,5 @@
   <label for="video[description]">Description:</label>
   <input name="video[description]" value='<%= "#{@video.description}" %>'>
 
-  <input type="submit" value="Create">
+  <input type="submit" value="Edit" method = "post" action="/videos/<%= @video %>">
 </form>

@@ -1,6 +1,8 @@
 # require './helpers/videohelper'
 
 class Vbucket < Sinatra::Base
+	Vbucket.use Rack::MethodOverride
+
 	include VideoHelper
 
 	get '/' do
@@ -9,8 +11,12 @@ class Vbucket < Sinatra::Base
 		erb :index
 	end
 
+	get '/videos/new' do
+		erb (:"videos/new")
+	end
+
 	#create
-	post '/' do
+	post '/videos' do
 
 		@user = User.create(params[:users])
 		@videos = Video.create(params[:videos])
@@ -18,40 +24,62 @@ class Vbucket < Sinatra::Base
 		@vid_id = vidembed(@videos.video_url)
 		puts @vid_id
 
-		erb :index
+		redirect "/"
 
 	end
 
 #show one video -->works! shows one video
-	get "/videos/:id" do
-		@videos = Video.find(params[:id])
-		@youtube_id = @videos.video_url.split("=").last
+#now it doesn't work :(
+	get '/videos/:id' do
+		@video = Video.find(params[:id])
+		@youtube_id = @video.video_url.split("=").last
+		# erb :index
 		erb (:"videos/show")
 	end
 
-#show all videos -->works! shows all videos
+#show all videos -->works! shows all videos, click on one video to watch and it brings to that video!
 	get '/videos' do
-		@videos = Video.all
+		@videos = Video.order(id: :desc).all
 		erb(:index)
 	end
 
+#edit - like new, this gives us a form that will put/patch our changes 
+get '/videos/:id/edit' do
+	@video = Video.find(params[:id])
+	erb(:"videos/edit")
+end
 
-# get '/' do
-# 	# @videos = VIDEOS
-# 	@videos = Video.all
-# 	@upload = VideoUploader
-# 	erb :index
-# end
+
+post 'videos/:id' do
+	@video = Video.find(params[:id])
+	"hello world"
+end
+
+
+#update - like create, this does the actual updating
+post "/videos/:id" do
+	@video = Video.find(params[:id])
+	if @video.update_attributes(params[:video])
+		redirect ("/videos/#{@video.id}")
+	else
+		erb (:"videos/edit")
+	end
+end
+
+
+#DELETE
+	post '/videos/:id/delete' do
+		@video = Video.find(params[:id])
+		# p "Hello from Delete Route"
+		@video.destroy
+
+		redirect ('/videos')
+	end
 
 
 #RESTful video controller actions
 
-#6.8 update - post to root
 
-# get '/' do
-# 	@upload = VideoUploader.all
-# 	erb :index
-# end
 
 post '/videos/new' do
 		@user = User.new(params[:users])
@@ -61,100 +89,12 @@ post '/videos/new' do
 			redirect ("/videos/#{video.id}")
 		else
 			erb(:"videos/new")
+	end
 end
 
 get '/videos/new' do
 	@videos = Video.all
 	erb (:"videos/new")
 end
-end
 
-
-# # #create
-# # post '/videos' do
-# 	@video = Video.new(params[:video])
-# 	if @video.save
-# 		redirect("/videos/#{@video.id}")
-# 	else
-# # 		erb (:"videos/new")
-# # 	end
-# # end
-
-
-# post '/submit' do
-# 	@upload = VideoUploader.new
-# 	@upload.file = params[:video]
-# 	if @upload.save
-# 	  redirect ("/")
-# else 
-# erb (:"videos/new")
-# end
-
-
-
-
-# # #create
-# # post '/videos' do
-# 	@video = Video.new(params[:video])
-# 	if @video.save
-# 		redirect("/videos/#{@video.id}")
-# 	else
-# # 		erb (:"videos/new")
-# # 	end
-# # end
-
-#show
-
-
-# #index
-# get '/videos' do
-# 	@videos = Video.all
-# 	erb(:"videos/index")
-# end
-
-# new
-
-# get '/new' do
-# 	@videos = Video.new
-# 	erb(:"new")
-# end
-
-
-
-# #show
-# get '/videos/:id' do
-# 	@video = Video.find(params[:id])
-# 	erb(:"videos/show")
-# end
-
-
-# #edit
-# get '/videos/:id/edit' do
-# 	@video = Video.find(params[:id])
-# 	erb(:"videos/edit")
-# end
-
-# #update
-
-# put '/videos/:id' do
-# 	@video = Video.find(params[:id])
-# 	if @video.update_attributes(params[:video])
-# 		redirect ("/videos/#{video.id}")
-# 	else
-# 		erb (:"videos/edit")
-# 	end
-# end
-
-# delete '/videos/:id/delete' do
-# 	@video = Video.find(params[:id])
-# 	if @video.destroy
-# 		redirect ('/videos')
-# 	else
-# 		redirect ("/videos/#{@video.id}")
-# 	end
-
-
-
-
-# end
 end
