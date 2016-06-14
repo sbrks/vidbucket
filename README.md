@@ -34,4 +34,4 @@ VideoBucket was originally conceived as a video blog. My girlfriend and I were d
   - Bucket List page with CRUD capabilities
 
 ## Installation
-No installation necessary; VideoBucket is hosted on Heroku here: https://radiant-ravine-44369.herokuapp.com/
+No installation necessary; VideoBucket is hosted on Heroku here: https://desolate-hollows-35955.herokuapp.com/
